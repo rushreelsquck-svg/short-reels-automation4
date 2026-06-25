@@ -2,7 +2,7 @@ name: Billion Meaning - Daily Tips
 
 on:
   schedule:
-    - cron: "0 15 * * *"   # 15:00 UTC — adjust freely; see https://crontab.guru
+    - cron: "0 7 * * *"   # 15:00 UTC — adjust freely; see https://crontab.guru
   workflow_dispatch: {}
 
 jobs:
