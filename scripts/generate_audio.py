@@ -19,7 +19,7 @@ import requests
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 OPENAI_TTS_MODEL = os.environ.get("OPENAI_TTS_MODEL", "tts-1")
-OPENAI_TTS_VOICE = os.environ.get("OPENAI_TTS_VOICE", "onyx")
+OPENAI_TTS_VOICE = os.environ.get("OPENAI_TTS_VOICE", "nova")
 
 
 def _generate_with_openai(text, output_path):
