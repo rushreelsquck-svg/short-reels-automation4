@@ -22,7 +22,7 @@ def _dedupe_preserve_order(items):
 
 
 def build_final_metadata(video: dict, trending_keywords: list[str]) -> dict:
-    title = video.get("title", "Daily Tips")[:MAX_TITLE_CHARS]
+    title = video.get("title", "Bible Time")[:MAX_TITLE_CHARS]
 
     hashtags = _dedupe_preserve_order(video.get("hashtags", ["#shorts"]))
     hashtag_line = " ".join(hashtags)
@@ -31,7 +31,7 @@ def build_final_metadata(video: dict, trending_keywords: list[str]) -> dict:
     description = "\n".join(p for p in description_parts if p)[:MAX_DESCRIPTION_CHARS]
 
     combined_tags = _dedupe_preserve_order(
-        video.get("tags", []) + trending_keywords + ["shorts", "tips", "lifehacks", "selfimprovement"]
+        video.get("tags", []) + trending_keywords + ["shorts", "bible", "biblestory", "faith"]
     )
 
     final_tags = []
