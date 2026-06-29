@@ -1,7 +1,7 @@
 """
 main.py
-Runs the whole daily tips pipeline end to end. Each stage prints progress
-so failures are easy to spot in the Actions log.
+Runs the whole daily Bible Time pipeline end to end. Each stage prints
+progress so failures are easy to spot in the Actions log.
 """
 import json
 import os
@@ -9,39 +9,39 @@ import sys
 import traceback
 from pathlib import Path
 
-from generate_tips import generate_tips_video
+from generate_bible import generate_bible_video
 from generate_audio import generate_voiceover
 from build_video import build_video
 from fetch_youtube_trending_tags import get_trending_keywords
 from youtube_metadata import build_final_metadata
 from upload_video import upload_short
 
-WORKDIR = Path("/tmp/tips_run")
+WORKDIR = Path("/tmp/bible_run")
 
 
 def run():
-    print("[1/5] Writing today's tips video (Claude)...")
-    video = generate_tips_video()
-    print(f"      -> {video['title']}  ({len(video['tips'])} tips)")
+    print("[1/5] Writing today's Bible Time video (Claude)...")
+    video = generate_bible_video()
+    print(f"      -> {video['title']}  ({len(video['beats'])} beats)")
 
     WORKDIR.mkdir(parents=True, exist_ok=True)
     scenes = []
 
-    print("[2/5] Generating voiceover for the hook and each tip...")
+    print("[2/5] Generating voiceover for the hook and each beat...")
     hook_audio = str(WORKDIR / "scene_hook.mp3")
     generate_voiceover(video["hook"], hook_audio)
     scenes.append({"audio_path": hook_audio, "visual_query": None, "caption_text": video["hook"], "number": None})
 
-    for i, tip in enumerate(video["tips"]):
+    for i, beat in enumerate(video["beats"]):
         audio_path = str(WORKDIR / f"scene_{i}.mp3")
-        generate_voiceover(tip["narration"], audio_path)
+        generate_voiceover(beat["narration"], audio_path)
         scenes.append({
             "audio_path": audio_path,
-            "visual_query": tip["visual_query"],
-            "caption_text": tip["narration"],
+            "visual_query": beat["visual_query"],
+            "caption_text": beat["narration"],
             "number": i + 1,
         })
-    print(f"      -> {len(scenes)} scenes ready (hook + {len(video['tips'])} tips)")
+    print(f"      -> {len(scenes)} scenes ready (hook + {len(video['beats'])} beats)")
 
     print("[3/5] Building the video...")
     video_path = str(WORKDIR / "output.mp4")
