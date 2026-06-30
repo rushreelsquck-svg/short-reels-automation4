@@ -62,10 +62,11 @@ Hard rules:
   theme, building toward a brief takeaway.
 - Close with a one-line gentle invitation to reflect or follow for more — not a hard sales pitch.
 - Written for narration: short sentences, warm and sincere tone, no headers, no bullet points.
-- For each beat (not the hook), pick a short, calm, reverent stock-footage phrase (e.g. "open bible
+- For the hook AND each beat, pick a short, calm, reverent stock-footage phrase (e.g. "open bible
   pages", "desert sunrise", "ancient stone path", "candle light close up", "hands in prayer",
   "shepherd with sheep in a field") — never anything graphic, even for stories involving conflict
-  (depict the setting or aftermath, not violence itself).
+  (depict the setting or aftermath, not violence itself). The hook needs its own visual cue just
+  like every beat does — never leave it out.
 - Call the submit_bible_video tool exactly once."""
 
 BIBLE_TOOL = {
@@ -80,6 +81,7 @@ BIBLE_TOOL = {
             "tags": {"type": "array", "items": {"type": "string"}, "description": "8-12 lowercase tags relevant to this story/theme"},
             "hashtags": {"type": "array", "items": {"type": "string"}, "description": "5-8 hashtags starting with #, always include #shorts"},
             "hook": {"type": "string", "description": "The opening hook line, 1 short sentence"},
+            "hook_visual_query": {"type": "string", "description": "Concrete, calm, reverent stock-footage search phrase for the hook itself"},
             "beats": {
                 "type": "array",
                 "minItems": 5,
@@ -94,7 +96,7 @@ BIBLE_TOOL = {
                 },
             },
         },
-        "required": ["premise", "title", "description", "tags", "hashtags", "hook", "beats"],
+        "required": ["premise", "title", "description", "tags", "hashtags", "hook", "hook_visual_query", "beats"],
     },
 }
 
