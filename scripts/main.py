@@ -15,6 +15,7 @@ from build_video import build_video
 from fetch_youtube_trending_tags import get_trending_keywords
 from youtube_metadata import build_final_metadata
 from upload_video import upload_short
+from upload_facebook import upload_reel
 
 WORKDIR = Path("/tmp/bible_run")
 
@@ -59,6 +60,9 @@ def run():
         description=final_meta["description"],
         tags=final_meta["tags"],
     )
+
+    print("[Cross-post] Posting to Facebook as a Reel...")
+    upload_reel(video_path, final_meta["description"])
 
     print(json.dumps({"video_id": video_id, "title": final_meta["title"]}, indent=2))
     return video_id
