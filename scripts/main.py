@@ -31,7 +31,7 @@ def run():
     print("[2/5] Generating voiceover for the hook and each beat...")
     hook_audio = str(WORKDIR / "scene_hook.mp3")
     generate_voiceover(video["hook"], hook_audio)
-    scenes.append({"audio_path": hook_audio, video.get("hook_visual_query"), "caption_text": video["hook"], "number": None})
+    scenes.append({"audio_path": hook_audio, "visual_query": video.get("hook_visual_query"), "caption_text": video["hook"], "number": None})
 
     for i, beat in enumerate(video["beats"]):
         audio_path = str(WORKDIR / f"scene_{i}.mp3")
