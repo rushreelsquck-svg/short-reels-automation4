@@ -201,6 +201,8 @@ def build_video(scenes, output_path):
 
     audio_tracks = list(audio_clips)
     music_files = list(MUSIC_DIR.glob("*.mp3"))
+    print(f"Music folder: {MUSIC_DIR}")
+    print(f"Music files found: {music_files}")
     if music_files:
         music = AudioFileClip(str(random.choice(music_files))).fx(afx.audio_loop, duration=total_duration)
         music = music.fx(afx.volumex, 0.18)
