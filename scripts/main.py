@@ -43,6 +43,15 @@ def run():
             "number": i + 1,
         })
     print(f"      -> {len(scenes)} scenes ready (hook + {len(video['beats'])} beats)")
+    # Voiced outro
+    outro_audio = str(WORKDIR / "scene_outro.mp3")
+    generate_voiceover("Follow for more Bible stories retold every single day.", outro_audio)
+    scenes.append({
+        "audio_path": outro_audio,
+        "visual_query": "candlelight prayer hands warm light",
+        "caption_text": "Follow for more Bible stories retold every single day.",
+        "number": None,
+    })
 
     print("[3/5] Building the video...")
     video_path = str(WORKDIR / "output.mp4")
